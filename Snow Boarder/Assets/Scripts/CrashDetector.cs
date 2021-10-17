@@ -8,9 +8,15 @@ public class CrashDetector : MonoBehaviour
 
     [SerializeField]
     float delayTime = 1f;
+    [SerializeField]
+    ParticleSystem crashEffect;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Invoke("ReloadScene", delayTime);
+        if (collision.tag == "Ground")
+        {
+            crashEffect.Play();
+            Invoke("ReloadScene", delayTime);
+        }
     }
 
 
